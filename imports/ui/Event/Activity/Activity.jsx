@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item, Grid, Label, Divider, Header } from 'semantic-ui-react';
 
-import CategoryTag from '../CategoryTag';
+import CategoryTag from '../../CategoryTag/index';
 import styles from './Activity.css';
 
 const Activity = ({

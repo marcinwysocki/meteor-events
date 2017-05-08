@@ -1,9 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Container, Header, Icon, Segment } from 'semantic-ui-react';
+import { Header, Icon, Segment } from 'semantic-ui-react';
 
 import styles from './Event.css';
-import Activities from '../ActivitiesView';
+import Activities from './ActivitiesView';
 
 class Event extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class Event extends Component {
         const { name, date, eventsLocation, activities } = this.props;
 
         return (
-            <Container textAlign="left" className={styles.wrapper}>
+            <div>
                 <Segment>
                 <Header size="huge" >
                     {name}
@@ -34,7 +34,7 @@ class Event extends Component {
                 </Segment>
                 <Header>Activities</Header>
                 <Activities activities={activities} />
-           </Container>
+           </div>
         );
     }
 }

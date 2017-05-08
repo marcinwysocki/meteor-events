@@ -1,7 +1,7 @@
 import React from 'react';
 import { Segment, Header } from 'semantic-ui-react';
 
-import Activity from '../Activity';
+import Activity from '../Activity/index';
 
 const ActivitiesView = ({ activities }) => (
     <Segment>
