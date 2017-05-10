@@ -4,17 +4,18 @@ import { Card, Icon } from 'semantic-ui-react';
 const EventCard = ({
     name,
     date,
+    startTime,
     eventsLocation,
     description,
     attendeesCount
 }) => (
-    <Card>
+    <Card fluid>
         <Card.Content>
             <Card.Header>
                 {name}
             </Card.Header>
             <Card.Meta>
-                {date} @ {eventsLocation}
+                {date}, {startTime} @ {eventsLocation}
             </Card.Meta>
             <Card.Description>
                 {description}

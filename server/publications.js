@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 
-import { getAllEvents } from '../imports/collections/events';
+import { Events } from '../imports/collections/events';
 
-Meteor.publish('events', getAllEvents);
+Meteor.publish('events', () => Events.find());

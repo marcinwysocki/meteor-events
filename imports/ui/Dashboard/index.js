@@ -1,4 +1,5 @@
 import composeWithTracker from 'compose-with-tracker';
+
 import Dashboard from './Dashboard.jsx';
 
 import { getAllEvents } from '../../collections/events';
