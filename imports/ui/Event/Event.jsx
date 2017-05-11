@@ -32,7 +32,6 @@ class Event extends Component {
                     </span>
                 </p>
                 </Segment>
-                <Header>Activities</Header>
                 <Activities activities={activities} />
            </div>
         );

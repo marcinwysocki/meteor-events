@@ -9,7 +9,7 @@ const loader = ({ history }, onData) => {
             onFormSubmit: event => {
                 Meteor.call('addEvent', event, (err, insertedId) => {
                     if (!err) {
-                        history.push(`/event/${insertedId}`)
+                        history.push(`/events/${insertedId}`)
                     }
                 })
             }
