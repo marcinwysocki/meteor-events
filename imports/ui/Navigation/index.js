@@ -9,10 +9,12 @@ const Navigation = ({ location, history }) => {
         history.push('/' + name);
     };
 
+    const match = /\/(\w+)\/?/.exec(location.pathname);
+
     return <NavigationComponent
         onTabClick={onTabClick}
-        activeTab={/\/(\w+)\/?/.exec(location.pathname)[1]}
+        activeTab={match ? match[1] : ""}
     />
-}
+};
 
 export default withRouter(Navigation)
