@@ -1,6 +1,7 @@
 import composeWithTracker from 'compose-with-tracker';
 
 import Dashboard from './Dashboard.jsx';
+import { withAuthentication } from '../Auth/Auth'
 
 import { getAllEvents } from '../../collections/events';
 
@@ -14,4 +15,4 @@ const loader = (props, onData) => {
     }
 };
 
-export default composeWithTracker(loader)(Dashboard);
+export default composeWithTracker(loader)(withAuthentication(Dashboard));

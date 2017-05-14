@@ -1,9 +1,8 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
-const Navigation = ({ activeTab, onTabClick }) => (
+const Navigation = ({ activeTab, onTabClick, onLogout }) => (
     <Menu inverted>
         {
             !!Meteor.userId() && (
@@ -31,31 +30,43 @@ const Navigation = ({ activeTab, onTabClick }) => (
             </Menu.Menu>
             )
         }
-        <Menu.Menu position="right">
             {
                 !!Meteor.userId() ? (
-                    <Menu.Item
-                        name="add"
-                        onClick={() => Meteor.logout()}
-                        as="div"
-                        link
-                    >
-                        Logout
-                    </Menu.Item>
+                    <Menu.Menu position="right">
+                        <Menu.Item
+                            name="add"
+                            onClick={onLogout}
+                            as="div"
+                            link
+                        >
+                            Logout
+                        </Menu.Item>
+                    </Menu.Menu>
                 ) : (
-                    <Menu.Item
-                        name="add"
-                        active={activeTab === 'login'}
-                        color="blue"
-                        onClick={onTabClick}
-                        as="div"
-                        link
-                    >
-                        <Link to="/login">Login</Link>
-                    </Menu.Item>
+                    <Menu.Menu position="right">
+                        <Menu.Item
+                            name="add"
+                            active={activeTab === 'login'}
+                            color="blue"
+                            onClick={onTabClick}
+                            as="div"
+                            link
+                        >
+                            <Link to="/login">Login</Link>
+                        </Menu.Item>
+                        <Menu.Item
+                            name="register"
+                            active={activeTab === 'register'}
+                            color="blue"
+                            onClick={onTabClick}
+                            as="div"
+                            link
+                        >
+                            <Link to="/register">Register</Link>
+                        </Menu.Item>
+                    </Menu.Menu>
                 )
             }
-        </Menu.Menu>
     </Menu>
 );
 

@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
-import LoginForm from './Login.jsx';
+import RegisterForm from './RegisterForm';
 
 const onSubmit = (username, password) => new Promise((resolve, reject) => {
-    Meteor.loginWithPassword(username, password, (err, data) => {
-        if (err) {
-            reject(err);
-        }
+    Accounts.createUser({ username, password }, (err, data) => {
+       if (err) {
+           reject(err);
+       }
 
-        resolve(data);
+       resolve(data);
     });
 });
 
-class LoginContainer extends Component {
+class RegisterContainer extends Component {
     constructor(props) {
         super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    componentWillMount() {
-        if (Meteor.userId()) {
-            this.props.history.push('/');
-        }
     }
 
     handleSubmit(username, password) {
@@ -37,8 +31,9 @@ class LoginContainer extends Component {
     }
 
     render() {
-        return <LoginForm onSubmit={this.handleSubmit} />
+        return <RegisterForm onSubmit={this.handleSubmit} />
     }
 }
 
-export default withRouter(LoginContainer);
+export default withRouter(RegisterContainer);
+

@@ -1,6 +1,8 @@
 import AddEventForm from './AddEventForm.jsx';
 import composeWithTracker from 'compose-with-tracker';
 
+import { withAuthentication } from '../Auth/Auth'
+
 const loader = ({ history }, onData) => {
     const subscription = Meteor.subscribe('events');
 
@@ -17,4 +19,4 @@ const loader = ({ history }, onData) => {
     }
 };
 
-export default composeWithTracker(loader)(AddEventForm);
+export default composeWithTracker(loader)(withAuthentication(AddEventForm));

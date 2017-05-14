@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import composeWithTracker from 'compose-with-tracker';
 import queryString from 'query-string';
 
+import { withAuthentication } from '../Auth/Auth';
 import Event from './Event.jsx';
 import { getEventById } from '../../collections/events';
 
@@ -15,4 +16,4 @@ const loader = ({ match }, onData) => {
     }
 };
 
-export default composeWithTracker(loader)(Event);
+export default composeWithTracker(loader)(withAuthentication(Event));
