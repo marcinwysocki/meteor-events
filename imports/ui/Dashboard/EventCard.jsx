@@ -7,9 +7,10 @@ const EventCard = ({
     startTime,
     eventsLocation,
     description,
-    attendeesCount
+    attendeesCount,
+    onClick
 }) => (
-    <Card fluid>
+    <Card fluid onClick={onClick}>
         <Card.Content>
             <Card.Header>
                 {name}
