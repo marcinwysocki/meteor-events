@@ -9,15 +9,32 @@ class Event extends Component {
         super(props);
     }
 
+    renderActionButton() {
+        const {
+            buttonColor,
+            buttonText,
+            onClick
+        } = this.props;
+
+        return (
+            <div className='ui two buttons'>
+                <Button
+                    basic
+                    color={buttonColor}
+                    onClick={onClick}
+                >
+                    {buttonText}
+                </Button>
+            </div>
+        )
+    }
+
     render() {
         const {
             name,
             date,
             eventsLocation,
-            activities,
-            hasCurrentUserJoined,
-            isOwnedByCurrentUser,
-            onClick
+            activities
         } = this.props;
 
         return (
@@ -25,7 +42,6 @@ class Event extends Component {
                 <Segment>
                 <Header size="huge" >
                     {name}
-                    <Icon name="calendar" />
                 </Header>
                 <p className={styles.paragraph}>
                     <Icon name="calendar" />
@@ -39,15 +55,7 @@ class Event extends Component {
                         {eventsLocation}
                     </span>
                 </p>
-                    <div className='ui two buttons'>
-                        <Button
-                            basic
-                            color={hasCurrentUserJoined ? "red" : "green"}
-                            onClick={onClick}
-                        >
-                            {hasCurrentUserJoined ? "Withdraw" : "Join"}
-                        </Button>
-                    </div>
+                    {this.renderActionButton()}
                 </Segment>
                 <Activities activities={activities} />
            </div>

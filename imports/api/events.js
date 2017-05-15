@@ -22,5 +22,8 @@ Meteor.methods({
             $pull: { attendees: Meteor.userId() },
             $inc: { attendeesCount: -1 }
         })
+    },
+    deleteEvent: (eventId) => {
+        Events.remove({ _id: eventId })
     }
 });

@@ -6,10 +6,29 @@ import { withAuthentication } from '../Auth/Auth';
 import Event from './Event.jsx';
 import { getEventById } from '../../collections/events';
 
-const withdrawFromEvent = eventId => () => Meteor.call('withdrawFromEvent', eventId);
-const joinEvent = eventId => () => Meteor.call('joinEvent', eventId);
 
-const loader = ({ match }, onData) => {
+const actions = (eventId, redirect) => ({
+    withdrawFromEvent: {
+        onClick: () => Meteor.call('withdrawFromEvent', eventId),
+        buttonColor: 'red',
+        buttonText: 'Withdraw'
+    },
+    joinEvent: {
+        onClick: () => Meteor.call('joinEvent', eventId),
+        buttonColor: 'green',
+        buttonText: 'Join'
+    },
+    deleteEvent: {
+        onClick: () => {
+            Meteor.call('deleteEvent', eventId);
+            redirect();
+        },
+        buttonColor: 'red',
+        buttonText: 'Delete'
+    }
+});
+
+const loader = ({ match, history }, onData) => {
     const subscription = Meteor.subscribe('events');
 
     if (subscription.ready()) {
@@ -18,10 +37,15 @@ const loader = ({ match }, onData) => {
         const isOwnedByCurrentUser = Meteor.userId() === event.userId;
         const hasCurrentUserJoined = event.attendees.some(id => Meteor.userId() === id);
 
+        const availableAction = isOwnedByCurrentUser
+                ? 'deleteEvent'
+                : hasCurrentUserJoined ? 'withdrawFromEvent' : 'joinEvent';
+        const action = actions(event._id, () => history.push('/events'))[availableAction];
+
         onData(null, {
             isOwnedByCurrentUser,
             hasCurrentUserJoined,
-            onClick: hasCurrentUserJoined ? withdrawFromEvent(event._id) : joinEvent(event._id),
+            ...action,
             ...event
         });
     }
