@@ -1,0 +1,8 @@
+// imports/ui/App.jsx
+const App = ({ tasks }) => (
+    <div>
+        { tasks.map((task) => (
+            <Task key={task._id} task={task} />
+        ))}
+    </div>
+);

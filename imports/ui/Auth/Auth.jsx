@@ -21,7 +21,7 @@ export const withAuthentication = WrappedComponent => withRouter(
         }
 
         render() {
-            const { location, history, match, loginRoute, ...props } = this.props;
+            const { loginRoute, ...props } = this.props;
 
             return <WrappedComponent {...props} />;
         }

@@ -1,22 +1,20 @@
+import React from 'react';
+
 import AddEventForm from './AddEventForm.jsx';
 import composeWithTracker from 'compose-with-tracker';
 
 import { withAuthentication } from '../Auth/Auth'
 
-const loader = ({ history }, onData) => {
-    const subscription = Meteor.subscribe('events');
-
-    if (subscription.ready()) {
-        onData(null, {
-            onFormSubmit: event => {
-                Meteor.call('addEvent', event, (err, insertedId) => {
-                    if (!err) {
-                        history.push(`/events/${insertedId}`)
-                    }
-                })
+const AddEventFormContainer = ({ history }) => {
+    const onFormSubmit = (event) => {
+        Meteor.call('addEvent', event, (err, insertedId) => {
+            if (!err) {
+                history.push(`/events/${insertedId}`)
             }
-        });
-    }
+        })
+    };
+
+    return <AddEventForm onFormSubmit={onFormSubmit} />
 };
 
-export default composeWithTracker(loader)(withAuthentication(AddEventForm));
+export default withAuthentication(AddEventFormContainer);

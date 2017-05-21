@@ -1,0 +1,13 @@
+// imports/collections/events.js
+
+import { Mongo } from 'meteor/mongo';
+
+export const Events = new Mongo.Collection('events');
+
+// server/publications.js
+
+import { Meteor } from 'meteor/meteor';
+
+import { Events } from '../imports/collections/events';
+
+Meteor.publish('events', () => Events.find());
