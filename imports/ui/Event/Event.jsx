@@ -40,24 +40,23 @@ class Event extends Component {
         return (
             <div>
                 <Segment>
-                <Header size="huge" >
-                    {name}
-                </Header>
-                <p className={styles.paragraph}>
-                    <Icon name="calendar" />
-                    <span className={styles.date}>
-                        {date}
-                    </span>
-                </p>
-                <p className={styles.paragraph}>
-                    <Icon name="marker" />
-                    <span className={styles.date}>
-                        {eventsLocation}
-                    </span>
-                </p>
+                    <Header size="huge" >
+                        {name}
+                    </Header>
+                    <p className={styles.paragraph}>
+                        <Icon name="calendar" />
+                        <span className={styles.date}>
+                            {date}
+                        </span>
+                    </p>
+                    <p className={styles.paragraph}>
+                        <Icon name="marker" />
+                        <span className={styles.date}>
+                            {eventsLocation}
+                        </span>
+                    </p>
                     {this.renderActionButton()}
                 </Segment>
-                <Activities activities={activities} />
            </div>
         );
     }

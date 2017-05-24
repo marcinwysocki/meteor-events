@@ -8,6 +8,16 @@ const Navigation = ({ activeTab, onTabClick, onLogout }) => (
             !!Meteor.userId() && (
             <Menu.Menu>
                 <Menu.Item
+                    name=""
+                    active={activeTab === ''}
+                    color="blue"
+                    onClick={onTabClick}
+                    as="div"
+                    link
+                >
+                    <Link to="/">Home</Link>
+                </Menu.Item>
+                <Menu.Item
                     name="events"
                     active={activeTab === 'events'}
                     color="blue"
